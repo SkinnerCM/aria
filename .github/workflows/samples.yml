@@ -1,0 +1,44 @@
+name: samples
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  sample-checks:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install terminal dependency
+        run: python -m pip install ptyprocess==0.7.0
+      - name: Install Windows ConPTY dependency
+        if: runner.os == 'Windows'
+        run: python -m pip install pywinpty==2.0.15
+      - name: Folder picker
+        working-directory: samples/folder_picker
+        run: python -B test_folder_picker.py
+      - name: Worker interface
+        working-directory: samples/worker_interface
+        run: python -B test_worker_interface.py
+      - name: Message bus
+        working-directory: samples/message_bus
+        run: python -B test_message_bus.py
+      - name: Task scheduler
+        working-directory: samples/task_scheduler
+        run: python -B test_task_scheduler.py
+      - name: Phone pairing
+        working-directory: samples/phone_pairing
+        run: python -B test_phone_pairing.py
+      - name: Git lockdown
+        working-directory: samples/git_lockdown
+        run: python -B test_git_lockdown.py
+      - name: Terminals
+        working-directory: samples/terminals
+        run: python -B test_terminals.py
