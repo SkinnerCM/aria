@@ -135,7 +135,9 @@ def main() -> None:
         )
         fetch_text = ((fetched.stdout or "") + (fetched.stderr or "")).lower()
         assert fetched.returncode != 0, fetch_text
-        assert "refused" in fetch_text, fetch_text
+        # Windows reaches the refusing stub. macOS and Linux cannot find git-upload-pack at all.
+        # Either way the fetch fails, which is what the lockdown guarantees.
+        assert "refused" in fetch_text or "not found" in fetch_text, fetch_text
 
     print("git lockdown: ok")
 
