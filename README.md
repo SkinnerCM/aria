@@ -2,41 +2,29 @@
 
 ![Aria: your ideas, amplified.](images/aria-hero.png)
 
+**Aria is a local-first orchestrator for AI coding agents.** It brings Claude Code, Grok Build, and Codex into one workspace, with a live canvas, collaborative workflows, and project memory across sessions.
+
 [![Download Aria for Windows](https://img.shields.io/badge/Download_Aria-for_Windows-ff9f3a?style=for-the-badge)](https://github.com/SkinnerCM/aria/releases/download/v0.2.0-alpha.13/AriaSetup-0.2.0-alpha.13.exe) [![Download Aria for Mac](https://img.shields.io/badge/Download_Aria-for_Mac-ff9f3a?style=for-the-badge)](https://github.com/SkinnerCM/aria/releases/download/v0.2.0-alpha.13/Aria-0.2.0-alpha.13-mac.dmg)
 
-Windows 10 or 11 (64-bit), about 70 MB. macOS 11 or later on Apple silicon (M1 or newer), about 65 MB. Early test version.
+Windows 10 or 11 (64-bit), about 70 MB. macOS 11 or later on Apple silicon (M1 or newer), about 65 MB.
 
-> **Before your first session:** Aria runs coding agents that can change files in your projects. While Aria is in early testing, try it on a test project or back up important work first.
-
-Aria is not yet code-signed, so Windows and macOS will show a security warning the first time you open it. If you downloaded Aria from this official GitHub page and trust the source, the steps below show how to open it.
-
-**Windows**
-1. Run AriaSetup-0.2.0-alpha.13.exe.
-2. When Windows SmartScreen says "Windows protected your PC", select **More info**, then **Run anyway**.
-3. Open Aria from the Start menu and follow the setup.
-
-**Mac**
-1. Open Aria-0.2.0-alpha.13-mac.dmg and drag Aria into Applications.
-2. Open Aria. macOS will say it can't verify the app. Click **Done** (or **OK**).
-3. Open **System Settings**, go to **Privacy & Security**, scroll down, and click **Open Anyway** next to the message about Aria. Then open Aria again and follow the setup.
+> **Early test version.** Aria runs coding agents that can change files in your projects, so try it on a test project or back up important work first. Aria is not yet code-signed, so Windows and macOS will show a security warning the first time you open it. If you downloaded Aria from this official GitHub page and trust the source, the [install steps](#installing-aria) below show how to open it.
 
 > **This repository is a sample, not the full program.** It contains an overview of Aria, design documents, and a few small, self-contained pieces of its code. The full Aria application is private and is not open source.
 
-## What Aria is
+## What Aria does
 
-Aria is a local-first orchestrator for AI coding agents.
+**Runs every major coding agent in one workspace.** Everything happens on a canvas. Open terminals in any of your projects and run Grok Build, Claude Code, or Codex in them. You can keep many sessions open across many projects at once, limited only by your computer's resources. Tasks Aria runs have a separate cap, 12 at a time by default, which you can change in Settings. Each terminal is live and tethered to its project on the canvas, and you can open any file in a Monaco editor window when you need it.
 
-Everything happens on a canvas. Open terminals in any of your projects and run Grok Build, Claude Code, or Codex in them. You can keep many sessions open across many projects at once, limited only by your computer's resources. Tasks Aria runs have a separate cap, 12 at a time by default, which you can change in Settings. Each terminal is live and tethered to its project on the canvas, and you can open any file in a Monaco editor window when you need it.
+**Coordinates multiple agents on one task in Collab mode.** You can work with any coding agent on its own, or put two or all three of them into Collab mode on a single task. Collab mode puts the agents on one isolated copy of the project and gives each one a role: one implements the product code, one writes the tests, and one handles the glue code and reviews the work. You decide which agent takes which role. Before anyone writes code, the agents agree on a plan, and Aria turns down every request to start editing files until the reviewing agents accept it. After that, each agent stays in its role: only the implementer writes product code, the test agent writes only tests, and the review agent writes only glue code and documentation, never product code. The agents coordinate through a shared message bus, and you can follow every exchange as it happens.
 
-You can work with any coding agent on its own, or put two or all three of them into Collab mode on a single task. Collab mode puts the agents on one isolated copy of the project and gives each one a role: one implements the product code, one writes the tests, and one handles the glue code and reviews the work. You decide which agent takes which role. Before anyone writes code, the agents agree on a plan, and Aria turns down every request to start editing files until the reviewing agents accept it. After that, each agent stays in its role: only the implementer writes product code, the test agent writes only tests, and the review agent writes only glue code and documentation, never product code. The agents coordinate through a shared message bus, and you can follow every exchange as it happens.
+**Adds a management layer of thinking agents.** Above the coding agents is a management layer of agents that do not write code. They plan, coordinate, and direct. A director agent oversees every project and takes your instructions by voice or text. Each project has its own project manager agent that knows that codebase, plans changes, creates tasks, and dispatches them to the coding agents. The director agent and the project manager agents message each other over the same bus, and you can talk to any of them at any time.
 
-Above the coding agents is a management layer of thinking agents. These do not write code. They plan, coordinate, and direct. A director agent oversees every project and takes your instructions by voice or text. Each project has its own project manager agent that knows that codebase, plans changes, creates tasks, and dispatches them to the coding agents. The director agent and the project manager agents message each other over the same bus, and you can talk to any of them at any time.
+**Isolates every task, or works in place with a snapshot.** Each task runs in one of two modes. By default, a task is isolated: the coding agent works in its own git worktree, a separate copy of the code on its own branch. Because each task has its own copy, many isolated tasks can run in the same folder at once without touching each other's files. Git is removed from the agent's environment in this mode, Aria commits the agent's work, and you choose to merge it or discard it. You can also run a task in place: the coding agent edits the real files directly, and Aria takes a snapshot first, so you can undo that one task without touching anyone else's changes. Because in-place tasks modify shared files directly, Aria permits only one active in-place task per folder to prevent conflicting writes. (A project in Aria can span several folders, so a project can have an in-place task running in each of them.)
 
-Each task runs in one of two modes. By default, a task is isolated: the coding agent works in its own git worktree, a separate copy of the code on its own branch. Because each task has its own copy, many isolated tasks can run in the same folder at once without touching each other's files. Git is removed from the agent's environment in this mode, Aria commits the agent's work, and you choose to merge it or discard it. You can also run a task in place: the coding agent edits the real files directly, and Aria takes a snapshot first, so you can undo that one task without touching anyone else's changes. Because in-place tasks modify shared files directly, Aria permits only one active in-place task per folder to prevent conflicting writes. (A project in Aria can span several folders, so a project can have an in-place task running in each of them.)
+**Works hands-free and from your phone.** The director agent and every project manager agent respond to a wake phrase, so you can give instructions by voice without touching the keyboard. With xAI or OpenAI voice, the audio runs through Aria's own local relay, so your API key never reaches the browser. You can also pair your phone through a one-time invitation. A paired phone can follow progress, chat with the director and project manager agents, talk to the coding agents, and create and run tasks, whenever it can reach the computer Aria runs on.
 
-You can run all of this hands-free. The director agent and every project manager agent respond to a wake phrase, so you can give instructions by voice without touching the keyboard. With xAI or OpenAI voice, the audio runs through Aria's own local relay, so your API key never reaches the browser. You can also pair your phone through a one-time invitation. A paired phone can follow progress, chat with the director and project manager agents, talk to the coding agents, and create and run tasks, whenever it can reach the computer Aria runs on.
-
-Aria's memory is a hybrid:
+**Remembers what it learns.** Aria's memory is a hybrid:
 
 - **Semantic memory:** long-term knowledge of your projects, kept in Recallium over MCP by default. You can point Aria at your own memory server instead, as long as it offers the same memory tools as Recallium, or turn semantic memory off.
 - **Episodic memory:** Aria's own always-on record of everything said and done, kept on its SQLite message bus. It stays on even when semantic memory is off.
@@ -51,19 +39,22 @@ The result is an orchestrator that keeps what it learns about your projects and,
 ## How you work with it
 
 ```mermaid
-flowchart LR
+flowchart TD
   you[You]
   director[Director agent: all projects]
   pm[Project manager agent: one project]
   workers[Coding agents]
   project[Your project]
-  you --- director
-  you --- pm
-  director --- pm
-  pm --> workers --> project
+  you --> director
+  you --> pm
+  you --> workers
+  director --> pm
+  director --> workers
+  pm --> workers
+  workers --> project
 ```
 
-Lines are conversations: you can talk to the director agent or to any project manager agent, and they talk to each other. Arrows show work being carried out: a project manager agent assigns tasks to coding agents, and in isolated mode their changes reach your project only after you accept them.
+Arrows show who can direct whom. You can give instructions to the director agent, to any project manager agent, or directly to the coding agents. The director agent can direct the project managers and the coding agents, and each project manager agent directs its coding agents. The agents answer and report back along the same paths, so nothing here is a one-way conversation. A coding agent's work reaches your project last: in isolated mode, its changes land only after you accept them.
 
 ## Built with
 
@@ -104,6 +95,22 @@ Each folder in `samples/` contains a small, self-contained rewrite of one part o
 ## What is not included
 
 This repository does not include the full application. It does not include the instructions the director and project managers follow, how they plan and assign work, or how collaboration mode, memory, and memory distillation work.
+
+## Installing Aria
+
+> **Before your first session:** Aria runs coding agents that can change files in your projects. While Aria is in early testing, try it on a test project or back up important work first.
+
+Aria is not yet code-signed, so Windows and macOS will show a security warning the first time you open it. If you downloaded Aria from this official GitHub page and trust the source, the steps below show how to open it.
+
+**Windows**
+1. Run AriaSetup-0.2.0-alpha.13.exe.
+2. When Windows SmartScreen says "Windows protected your PC", select **More info**, then **Run anyway**.
+3. Open Aria from the Start menu and follow the setup.
+
+**Mac**
+1. Open Aria-0.2.0-alpha.13-mac.dmg and drag Aria into Applications.
+2. Open Aria. macOS will say it can't verify the app. Click **Done** (or **OK**).
+3. Open **System Settings**, go to **Privacy & Security**, scroll down, and click **Open Anyway** next to the message about Aria. Then open Aria again and follow the setup.
 
 ## License
 
