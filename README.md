@@ -2,6 +2,15 @@
 
 ![Aria: your ideas, amplified.](images/aria-hero.png)
 
+[![Download Aria for Windows](https://img.shields.io/badge/Download_Aria-for_Windows-ff9f3a?style=for-the-badge)](https://github.com/SkinnerCM/aria/releases/download/v0.2.0-alpha.13/AriaSetup-0.2.0-alpha.13.exe)
+
+**[Click here to download Aria for Windows](https://github.com/SkinnerCM/aria/releases/download/v0.2.0-alpha.13/AriaSetup-0.2.0-alpha.13.exe)** (about 70 MB). Windows 10 or 11, 64-bit. Early test version. Mac version coming soon.
+
+After it downloads:
+1. Run AriaSetup-0.2.0-alpha.13.exe.
+2. If Windows says "Windows protected your PC", click **More info**, then **Run anyway**. This appears because the app isn't signed yet.
+3. Open Aria from the Start menu and follow the setup.
+
 > **This repository is a sample, not the full program.** It contains an overview of Aria, design documents, and a few small, self-contained pieces of its code. The full Aria application is private and is not open source.
 
 ## What Aria is
