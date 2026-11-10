@@ -2,14 +2,23 @@
 
 ![Aria: your ideas, amplified.](images/aria-hero.png)
 
-[![Download Aria for Windows](https://img.shields.io/badge/Download_Aria-for_Windows-ff9f3a?style=for-the-badge)](https://github.com/SkinnerCM/aria/releases/download/v0.2.0-alpha.13/AriaSetup-0.2.0-alpha.13.exe)
+[![Download Aria for Windows](https://img.shields.io/badge/Download_Aria-for_Windows-ff9f3a?style=for-the-badge)](https://github.com/SkinnerCM/aria/releases/download/v0.2.0-alpha.13/AriaSetup-0.2.0-alpha.13.exe) [![Download Aria for Mac](https://img.shields.io/badge/Download_Aria-for_Mac-ff9f3a?style=for-the-badge)](https://github.com/SkinnerCM/aria/releases/download/v0.2.0-alpha.13/Aria-0.2.0-alpha.13-mac.dmg)
 
-**[Click here to download Aria for Windows](https://github.com/SkinnerCM/aria/releases/download/v0.2.0-alpha.13/AriaSetup-0.2.0-alpha.13.exe)** (about 70 MB). Windows 10 or 11, 64-bit. Early test version. Mac version coming soon.
+Windows 10 or 11 (64-bit), about 70 MB. macOS 11 or later on Apple silicon (M1 or newer), about 65 MB. Early test version.
 
-After it downloads:
+> **Before your first session:** Aria runs coding agents that can change files in your projects. While Aria is in early testing, try it on a test project or back up important work first.
+
+Aria is not yet code-signed, so Windows and macOS will show a security warning the first time you open it. If you downloaded Aria from this official GitHub page and trust the source, the steps below show how to open it.
+
+**Windows**
 1. Run AriaSetup-0.2.0-alpha.13.exe.
-2. If Windows says "Windows protected your PC", click **More info**, then **Run anyway**. This appears because the app isn't signed yet.
+2. When Windows SmartScreen says "Windows protected your PC", select **More info**, then **Run anyway**.
 3. Open Aria from the Start menu and follow the setup.
+
+**Mac**
+1. Open Aria-0.2.0-alpha.13-mac.dmg and drag Aria into Applications.
+2. Open Aria. macOS will say it can't verify the app. Click **Done** (or **OK**).
+3. Open **System Settings**, go to **Privacy & Security**, scroll down, and click **Open Anyway** next to the message about Aria. Then open Aria again and follow the setup.
 
 > **This repository is a sample, not the full program.** It contains an overview of Aria, design documents, and a few small, self-contained pieces of its code. The full Aria application is private and is not open source.
 
