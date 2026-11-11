@@ -34,9 +34,9 @@ The result is an orchestrator that keeps what it learns about your projects and,
 
 ## Architecture at a glance
 
-![Aria architecture: the operator, the director, project managers, and workers, on top of a shared runtime with memory, recovery, the coding assistants, and isolated worker environments.](images/aria-architecture.png)
+![Aria architecture: the operator, the director, project managers, and workers, on top of a shared runtime with memory, recovery, the coding assistants, and isolated worker environments.](images/aria-architecture_upscaled.png)
 
-## How you work with it
+## How you work with it 
 
 ```mermaid
 flowchart TD
