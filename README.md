@@ -4,7 +4,7 @@
 
 **Aria is a local-first orchestrator for AI coding agents.** It brings Claude Code, Grok Build, and Codex into one workspace, with a live canvas, collaborative workflows, and project memory across sessions.
 
-[![Download Aria for Windows](https://img.shields.io/badge/Download_Aria-for_Windows-ff9f3a?style=for-the-badge)](https://github.com/SkinnerCM/aria/releases/download/v0.2.0-alpha.14/AriaSetup-0.2.0-alpha.14.exe) [![Download Aria for Mac](https://img.shields.io/badge/Download_Aria-for_Mac-ff9f3a?style=for-the-badge)](https://github.com/SkinnerCM/aria/releases/download/v0.2.0-alpha.14/Aria-0.2.0-alpha.14-mac.dmg)
+[![Download Aria for Windows](https://img.shields.io/badge/Download_Aria-for_Windows-ff9f3a?style=for-the-badge)](https://github.com/SkinnerCM/aria/releases/download/v0.2.0-alpha.15/AriaSetup-0.2.0-alpha.15.exe) [![Download Aria for Mac](https://img.shields.io/badge/Download_Aria-for_Mac-ff9f3a?style=for-the-badge)](https://github.com/SkinnerCM/aria/releases/download/v0.2.0-alpha.15/Aria-0.2.0-alpha.15-mac.dmg)
 
 Windows 10 or 11 (64-bit), about 70 MB. macOS 11 or later on Apple silicon (M1 or newer), about 65 MB.
 
@@ -103,12 +103,12 @@ This repository does not include the full application. It does not include the i
 Aria is not yet code-signed, so Windows and macOS will show a security warning the first time you open it. If you downloaded Aria from this official GitHub page and trust the source, the steps below show how to open it.
 
 **Windows**
-1. Run AriaSetup-0.2.0-alpha.14.exe.
+1. Run AriaSetup-0.2.0-alpha.15.exe.
 2. When Windows SmartScreen says "Windows protected your PC", select **More info**, then **Run anyway**.
 3. Open Aria from the Start menu and follow the setup.
 
 **Mac**
-1. Open Aria-0.2.0-alpha.14-mac.dmg and drag Aria into Applications.
+1. Open Aria-0.2.0-alpha.15-mac.dmg and drag Aria into Applications.
 2. Open Aria. macOS will say it can't verify the app. Click **Done** (or **OK**).
 3. Open **System Settings**, go to **Privacy & Security**, scroll down, and click **Open Anyway** next to the message about Aria. Then open Aria again and follow the setup.
 
